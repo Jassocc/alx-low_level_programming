@@ -10,7 +10,7 @@ int main(void)
 int ls;
 int af;
 
-for (ls = 0; ls < 0; ls++)
+for (ls = 0; ls < 10; ls++)
 {
 putchar(ls + '0');
 }
