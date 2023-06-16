@@ -12,7 +12,7 @@ int max;
 for (max = 0; max < 10; max++)
 {
 putchar(max + '0');
-if (x < 9)
+if (max < 9)
 {
 putchar(',');
 putchar(' ');
