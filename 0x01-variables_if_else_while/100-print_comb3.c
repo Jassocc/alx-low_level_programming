@@ -19,7 +19,7 @@ putchar(cd + '0');
 
 if (ab != 8 || cd != 9)
 {
-putchar(';');
+putchar(',');
 putchar(' ');
 }
 }
