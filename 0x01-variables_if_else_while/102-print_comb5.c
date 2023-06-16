@@ -20,7 +20,7 @@ putchar(' ');
 putchar((beta / 10) + '0');
 putchar((beta % 10) + '0');
 
-if (alpha != 100 || beta != 100)
+if (alpha != 98 || beta != 99)
 {
 putchar(',');
 putchar(' ');
