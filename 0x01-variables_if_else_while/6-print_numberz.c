@@ -6,14 +6,15 @@
  * Return: Always 0 (Success)
  */
 int main(void)
+{
 
-int number;
+int numberz;
+
+for (numberz = 0; numberz < 10; numberz++)
 {
-for (number = 0; number < 10; number++)
-{
-putchar(number);
+putchar(number + '0');
 }
-putchar('\n')
+putchar('\n');
 
 return (0);
 }
