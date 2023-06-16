@@ -12,11 +12,11 @@ int af;
 
 for (ls = 0; ls < 0; ls++)
 {
-putchar(ls = '0');
+putchar(ls + '0');
 }
 for (af = 'a'; af <= 'f'; af++)
 {
-putchar(af = 'a');
+putchar(af + 'a');
 }
 putchar('\n');
 
