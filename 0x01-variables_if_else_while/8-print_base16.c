@@ -12,9 +12,9 @@ int af;
 
 for (ls = 0; ls < 0; ls++)
 {
-putchar(ls = 0 '0');
+putchar(ls = '0');
 }
-for (af = 'a'; af <= f; af++)
+for (af = 'a'; af <= 'f'; af++)
 {
 putchar(af = 'a');
 }
