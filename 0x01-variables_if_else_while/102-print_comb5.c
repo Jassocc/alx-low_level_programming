@@ -10,9 +10,9 @@ int main(void)
 int alpha;
 int beta;
 
-for (alpha = 0; alpha < 100; alpha++)
+for (alpha = 0; alpha < 98; alpha++)
 {
-for (beta = alpha + 1; beta < 100; beta++)
+for (beta = alpha + 1; beta < 98; beta++)
 {
 putchar((alpha / 10) + '0');
 putchar((alpha % 10) + '0');
