@@ -12,7 +12,7 @@ int beta;
 
 for (alpha = 0; alpha < 100; alpha++)
 {
-for (beta = alpha; beta < 100; beta++)
+for (beta = alpha; beta <= 100; beta++)
 {
 putchar(alpha / 10 + '0');
 putchar(alpha % 10 + '0');
