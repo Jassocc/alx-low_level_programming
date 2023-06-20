@@ -11,7 +11,7 @@ int previous;
 int current;
 int sum;
 int next;
-1
+
 while (current <= 4000000)
 {
 if (current % 2 == 0)
