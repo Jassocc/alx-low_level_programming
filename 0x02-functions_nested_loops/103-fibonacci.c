@@ -10,14 +10,15 @@ int main(void)
 int previous;
 int current;
 int sum;
-
+int next;
+1
 while (current <= 4000000)
 {
 if (current % 2 == 0)
 {
 sum += current;
 }
-int next = previous + current;
+next = previous + current;
 previous = current;
 current = next;
 }
