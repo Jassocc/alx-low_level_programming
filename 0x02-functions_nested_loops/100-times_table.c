@@ -16,9 +16,10 @@ for (rows = 0; rows <= n; rows++)
 for (columns = 0; columns <= n; columns++)
 {
 result = (rows * columns);
-if (column == 0)
+if (columns == 0)
 {
 _putchar('0' + result);
+}
 else
 {
 _putchar(',');
@@ -40,7 +41,6 @@ else if (result >= 100)
 _putchar('0' + (result / 100));
 _putchar('0' + ((result / 10) % 10));
 _putchar('0' + (result % 10));
-}
 }
 }
 }
