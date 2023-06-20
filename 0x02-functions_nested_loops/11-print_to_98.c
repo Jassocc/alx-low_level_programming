@@ -20,6 +20,7 @@ n--;
 }
 while (n == 0)
 {
-printf("%d");
+printf("%d", n);
 }
+printf("\n");
 }
