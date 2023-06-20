@@ -7,9 +7,9 @@
 
 int main(void)
 {
-int previous = 1;
-int current = 2;
-int count = 2;
+unsigned long previous = 1;
+unsigned long current = 2;
+unsigned long count = 0;
 int next;
 
 printf("%d, %d, ", previous, current);
