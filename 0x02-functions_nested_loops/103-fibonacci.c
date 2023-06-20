@@ -7,9 +7,9 @@
 
 int main(void)
 {
-int previous;
-int current;
-int sum;
+int previous = 1;
+int current = 2;
+int sum = 3;
 int next;
 
 while (current <= 4000000)
