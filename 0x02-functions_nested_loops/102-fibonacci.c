@@ -16,6 +16,7 @@ printf("%lu, ", num1);
 printf("%lu, ", num2);
 
 while (counter <= 50)
+{
 if (counter == 50)
 {
 printf("%lu \n", latter);
@@ -30,6 +31,7 @@ num2 = latter;
 
 latter = num1 + num2;
 counter++;
+}
 
 return (0);
 }
