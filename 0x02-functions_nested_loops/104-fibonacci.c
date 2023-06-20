@@ -9,7 +9,7 @@ int main(void)
 {
 unsigned long prev = 1;
 unsigned long current = 1;
-unsigned long Sum = 0;
+unsigned long sum = 0;
 long prev_top, prev_bottom, current_top, current_bottom, sum_top, sum_bottom;
 int count, over;
 printf("1");
