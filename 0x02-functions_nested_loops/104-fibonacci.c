@@ -14,7 +14,7 @@ int next;
 
 printf("%d, %d, ", previous, current);
 
-while (count < 98)
+while (count <= 98)
 {
 next = previous + current;
 printf("%d, ", next);
