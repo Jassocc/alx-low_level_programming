@@ -12,7 +12,7 @@ unsigned long current = 2;
 unsigned long count = 0;
 int next;
 
-printf("%d, %d, ", previous, current);
+printf("%ld, %ld, ", previous, current);
 
 while (count <= 98)
 {
