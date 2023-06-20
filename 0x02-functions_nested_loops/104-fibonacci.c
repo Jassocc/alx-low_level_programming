@@ -24,7 +24,7 @@ prev_top = prev / 1000000000;
 prev_bottom = prev % 1000000000;
 current_top = current / 1000000000;
 current_bottom = current % 1000000000;
-for (count <= 98; count++)
+for (; count <= 98; count++)
 {
 over = (prev_bottom + current_bottom) / 1000000000;
 sum_bottom = ((prev_bottom + current_bottom)-(1000000000 * over));
