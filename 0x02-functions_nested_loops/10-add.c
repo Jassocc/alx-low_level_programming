@@ -7,7 +7,7 @@
  *Return: result of the add on
  */
 
-int add(int a, int b);
+int add(int a, int b)
 {
 int a;
 int b;
