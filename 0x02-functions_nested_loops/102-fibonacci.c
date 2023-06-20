@@ -13,7 +13,7 @@ long int num2 = 2;
 long int latter = num1 + num2;
 
 printf("%lu, ", num1);
-printf("%lu", num2);
+printf("%lu ", num2);
 
 while (counter <= 50)
 {
