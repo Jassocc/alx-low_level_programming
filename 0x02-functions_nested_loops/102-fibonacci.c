@@ -7,30 +7,20 @@
 
 int main(void)
 {
-int counter = 3;
+int counter;
 long int num1 = 1;
 long int num2 = 2;
-long int latter = num1 + num2;
+long int latter;
 
-printf("%lu, ", num1);
-printf("%lu", num2);
+printf("%lu, %lu", num1, num2);
 
-while (counter <= 50)
+for (counter = 3; counter <= 50; counter++)
 {
-if (counter == 50)
-{
+latter = num1 + num2;
 printf(", %lu", latter);
-}
-else
-{
-printf("%lu, ", latter);
-}
 
 num1 = num2;
 num2 = latter;
-
-latter = num1 + num2;
-counter++;
 }
 printf("\n");
 
