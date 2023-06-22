@@ -15,7 +15,7 @@ _putchar('\n');
 }
 for (height = 1; height <= size; height++)
 {
-for (width = 1; width <= (size - height); height++)
+for (width = 1; width <= (size - height); width++)
 _putchar(' ');
 
 for (length = 1; length <= height; length++)
