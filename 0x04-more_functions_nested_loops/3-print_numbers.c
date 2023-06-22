@@ -6,8 +6,9 @@
 
 void print_numbers(void)
 {
-char numerical;
-for (numerical = '0'; numerical <= 9; numerical++)
+int numerical;
+
+for (numerical = '0'; numerical <= '9'; numerical++)
 {
 _putchar(numerical);
 }
