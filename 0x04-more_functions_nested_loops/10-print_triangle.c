@@ -13,6 +13,8 @@ if (size <= 0)
 {
 _putchar('\n');
 }
+else
+{
 for (height = 1; height <= size; height++)
 {
 for (width = 1; width <= (size - height); width++)
@@ -22,5 +24,6 @@ for (length = 1; length <= height; length++)
 _puthcar('#');
 
 _putchar('\n');
+}
 }
 }
