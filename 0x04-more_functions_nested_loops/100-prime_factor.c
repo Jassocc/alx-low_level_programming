@@ -11,11 +11,11 @@ int main(void)
 unsigned long number = 612852475143;
 unsigned long divider = 2;
 
-while (divider < num)
+while (divider < number)
 {
-if (num % divider == 0)
+if (number % divider == 0)
 {
-num /= divider;
+number /= divider;
 divider = 2;
 }
 else
@@ -23,7 +23,7 @@ else
 divider++;
 }
 }
-printf("%lu\n", num);
+printf("%lu\n", number);
 
 return (0);
 }
