@@ -11,9 +11,9 @@ int horizon, vertical;
 
 if (size > 0)
 {
-for (horizon = 1; horizon >= size; horizon++)
+for (horizon = 1; horizon <= size; horizon++)
 {
-for (vertical = 1; vertical >= size; vertical++)
+for (vertical = 1; vertical <= size; vertical++)
 {
 _putchar('#');
 }
