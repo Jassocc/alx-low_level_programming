@@ -10,25 +10,25 @@
 
 int main(void)
 {
-int multiple;
+int i;
 
-for (multiple = 1; multiple <= 100; multiple++)
+for (i = 1; i <= 100; i++)
 {
-if (multiple % 3 == 0 && multiple % 5 == 0)
+if (i % 3 == 0 && i % 5 == 0)
 {
 printf("FizzBuzz ");
 }
-if else(multiple % 3 == 0)
+if else(i % 3 == 0)
 {
 printf("Fizz ");
 }
-if else(multiple % 5 == 0)
+if else(i % 5 == 0)
 {
 printf("Buzz ");
 }
 else
 {
-printf("%d ", multiple);
+printf("%d ", i);
 }
 }
 printf("\n");
