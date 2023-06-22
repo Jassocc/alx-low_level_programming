@@ -26,6 +26,10 @@ else if (i % 5 == 0)
 {
 printf("Buzz ");
 }
+else if (i ==1)
+{
+printf("%d", i);
+}
 else
 {
 printf("%d ", i);
