@@ -15,7 +15,7 @@ tot = 0;
 
 srand(time(NULL));
 
-for (i = 0; i, 100; i++)
+for (i = 0; i < 100; i++)
 {
 passw[i] = rand() % 78;
 tot += (passw[i] + '0');
