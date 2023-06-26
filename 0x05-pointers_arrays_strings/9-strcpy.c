@@ -9,7 +9,7 @@
 
 char *_strcpy(char *dest, char *src)
 {
-int j;
+int j = 0;
 
 while (src[j] != '\0')
 {
