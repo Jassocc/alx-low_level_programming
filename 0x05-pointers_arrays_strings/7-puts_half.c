@@ -20,7 +20,7 @@ start = len / 2;
 }
 else
 {
-start = (len - 1) / 2;
+start = (len + 1) / 2;
 }
 while (str[start] != '\0')
 {
