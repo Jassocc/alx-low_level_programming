@@ -9,28 +9,28 @@
 int _atoi(char *s)
 {
 int result = 0;
-int a = 1;
-int b = 0;
+int sign = 1;
+int i = 0;
 
-if ( s[b] == '-')
+if ( s[i] == '-')
 {
-a = -1;
-b++;
+sign = -1;
+i++;
 }
-else if (s[b] == '+')
+else if (s[i] == '+')
 {
-b++;
+i++;
 }
-while (s[b] >= '0' && s[b] <= '9')
+while (s[i] >= '0' && s[i] <= '9')
 {
-if (result > (max / 10) || (result == (max / 10) && (s[b] - '0') > (max % 10)))
+if (result > (INT_MAX / 10) || (result == (INT_MAX / 10) && (s[i] - '0') > (INT_MAX % 10)))
 {
 
-return ((sign == 1) ? max : min);
+return ((sign == 1) ? INT_MAX : INT_MIN);
 }
-result = (result * 10) + (s[b] - '0');
-b++;
+result = (result * 10) + (s[i] - '0');
+i++;
 }
 
-return (result * a);
-}0
+return (result * sign);
+}
