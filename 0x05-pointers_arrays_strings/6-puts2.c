@@ -13,7 +13,7 @@ while (str[lan] != '\0')
 {
 if (lan % 2 == 0)
 {
-_puthcar(str[lan]);
+_putchar(str[lan]);
 }
 lan++;
 }
