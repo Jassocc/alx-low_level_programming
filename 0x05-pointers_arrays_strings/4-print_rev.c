@@ -13,12 +13,12 @@ int rev;
 while (*s != '\0')
 {
 length++;
-++s;
+s++;
 }
-for (rev = length; rev >= 0; rev--)
+for (rev = length - 1; rev >= 0; rev--)
 {
-_putchar(*s);
 s--;
+_putchar(*s);
 }
 _putchar('\n');
 }
