@@ -1,21 +1,18 @@
 #include "main.h"
 #include <limits.h>
-
 /**
- * _atoi - convert string to integer
- * @s: string that need to be converted
+ * _atoi - convert to integer
+ * @s: string to be converted
  * Return: integer
  */
-
 int _atoi(char *s)
 {
-int result = 0;
-int sign = 1;
+int r = 0;
+int s = 1;
 int a = 0;
-
-if ( s[a] == '-')
+if (s[a] == '-')
 {
-sign = -1;
+s = -1;
 a++;
 }
 else if (s[a] == '+')
@@ -24,14 +21,13 @@ a++;
 }
 while (s[a] >= '0' && s[a] <= '9')
 {
-if (result > (INT_MAX / 10) || (result == (INT_MAX / 10) && (s[a] - '0') > (INT_MAX % 10)))
+if (r > (INT_MAX / 10) || (r == (INT_MAX / 10) && (s[a] - '0') > (INT_MAX % 10)))
 {
-
-return ((sign == 1) ? INT_MAX : INT_MIN);
+return ((s == 1) ? INT_MAX : INT_MIN);
 }
-result = (result * 10) + (s[a] - '0');
+r = (r * 10) + (s[a] - '0');
 a++;
 }
 
-return (result * sign);
+return (r *s);
 }
