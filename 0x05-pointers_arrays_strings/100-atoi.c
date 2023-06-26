@@ -29,5 +29,5 @@ r = (r * 10) + (s[a] - '0');
 a++;
 }
 
-return (r *si);
+return (r * si);
 }
