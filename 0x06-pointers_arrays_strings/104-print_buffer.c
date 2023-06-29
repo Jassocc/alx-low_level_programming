@@ -29,17 +29,15 @@ printf(" ");
 }
 for (c = 0; c < 10; c++)
 {
-if (a + c < size)
-{
-if (b[a + c] >= 32 && b[a + c] <= 126)
-printf("%c", b[a + c]);
-else
-printf(".");
-}
-else
+if (a + c >= size)
 {
 printf(" ");
+continue;
 }
+if (b[a + c] >= 32 && b[a + c] <= 126)
+putchar(b[a + c]);
+else
+printf(".");
 }
 printf("\n");
 }
