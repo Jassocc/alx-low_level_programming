@@ -11,7 +11,7 @@
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int a, b, c, i, j, d, s;
+int a, b, c, i, j, d, s, left, right;
 a = 0;
 b = 0;
 c = 0;
@@ -39,5 +39,15 @@ r[c++] = (s % 10) + '0';
 if (d)
 r[c++] = d + '0';
 r[c] = '\0';
+left = 0;
+right = c - 1;
+while (left < right)
+{
+char tem = r[left];
+r[left] = r[right];
+r[right] = tem;
+left++;
+right--;
+}
 return (r);
 }
