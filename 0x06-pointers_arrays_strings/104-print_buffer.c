@@ -42,5 +42,4 @@ printf(" ");
 }
 printf("\n");
 }
-printf("\n");
 }
