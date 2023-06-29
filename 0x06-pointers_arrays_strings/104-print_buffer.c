@@ -27,7 +27,6 @@ printf("  ");
 if (c % 2 == 1)
 printf(" ");
 }
-printf(" ");
 for (c = 0; c < 10; c++)
 {
 if (a + c < size)
