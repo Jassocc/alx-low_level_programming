@@ -28,7 +28,7 @@ if (c % 2 != 0)
 printf(" ");
 }
 printf(" ");
-for (c = a; c < a +10; c++)
+for (c = a; c < a + 10; c++)
 {
 if (c < size)
 {
