@@ -15,7 +15,7 @@ for (a = 0; a < size; a += 10)
 {
 printf("%08x: ", a);
 
-for (c = 0;c < 10; c++)
+for (c = 0; c < 10; c++)
 {
 if ((c + a) >= size)
 printf("  ");
