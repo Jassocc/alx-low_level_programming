@@ -13,6 +13,7 @@ int a, c;
 if (size <= 0)
 {
 printf("\n");
+return;
 }
 for (a = 0; a < size; a += 10)
 {
