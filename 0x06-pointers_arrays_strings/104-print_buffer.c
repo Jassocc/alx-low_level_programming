@@ -10,37 +10,34 @@
 void print_buffer(char *b, int size)
 {
 int a = 0, c;
-if (size <= 0)
+if (size < 0)
 {
 printf("\n");
 return;
 }
-for (a = 0; a < size; a += 10)
+while (a < size)
 {
+if (a % 10 == 0)
 printf("%08x: ", a);
-for (c = 0; c < 10; c++)
+for (c = a; c < a + 9; c += 2)
 {
-if (a + c < size)
-printf("%02x", (unsigned char)b[a + c]);
+if ((c < size) && ((c + 1) < size))
+printf("%02x%02x ", b[c], b[c + 1]);
 else
+{
+while (++c <= a +10)
 printf("  ");
-if (c % 2 == 1)
-printf(" ");
+printf("  ");
 }
-for (c = 0; c < 10; c++)
+}
+for (c = a; c < a + 9 && c < size; c++)
 {
-if (a + c < size)
-{
-if (b[a + c] >= 32 && b[a + c] <= 126)
-printf("%c", b[a + c]);
+if (b[c] >= 32 && b[c] <= 126)
+printf("%c", b[c]);
 else
 printf(".");
 }
-else
-{
-printf(" ");
-}
-}
 printf("\n");
+a += 10;
 }
 }
