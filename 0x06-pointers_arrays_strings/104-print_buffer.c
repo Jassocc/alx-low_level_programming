@@ -23,7 +23,7 @@ for (c = 0; c < 10; c++)
 if (a + c < size)
 printf("%02x", (unsigned char)b[a + c]);
 else
-printf(" ");
+printf("  ");
 if (c % 2 == 1)
 printf(" ");
 }
