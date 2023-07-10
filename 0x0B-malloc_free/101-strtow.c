@@ -86,5 +86,44 @@ int word_counter(char *str)
 
 char **strtow(char *str)
 {
-	int word;
-	int ind = 0,
+	char **word, *t, *start, count_word;
+	int ind = 0, le, a;
+
+	if (str == NULL || *str == '\0')
+	{
+		return (NULL);
+	}
+	count_word = word_counter(str);
+	word = malloc((count_word + 1) * sizeof(char *));
+	if (word == NULL)
+	{
+		return (NULL);
+	}
+	ind = 0, *t = str;
+	while (*t != '\0')
+	{
+		if (*t == ' ')
+		{
+			t++;
+			continue;
+		}
+		*start = t;
+		while (*t != ' ' && *t != '\0')
+		{
+			t++;
+		}
+		le = t - start, word[ind] = _strdup[start];
+		if (word[ind] == NULL)
+		{
+			for (a = 0; a < ind; a++)
+			{
+				free(word[a]);
+			}
+			free(word);
+			return (NULL);
+		}
+		ind++;
+	}
+	word[ind] = NULL;
+	return (word);
+}
