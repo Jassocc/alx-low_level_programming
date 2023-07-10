@@ -42,7 +42,7 @@ char *argstostr(int ac, char **av)
 	{
 		tot_len = tot_len + _strlen(av[a]) + 1;
 	}
-	result = malloc((tot_len + 1) * sizeof(char *));
+	result = malloc((tot_len + 1) * sizeof(char));
 
 	if (result == NULL)
 	{
