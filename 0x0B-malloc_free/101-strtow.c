@@ -10,47 +10,16 @@
 
 int _strlen(char *str)
 {
-	int length = 0;
+	int length = 0, index = 0;
 
-	while (str[length] != '\0')
+	while (*(str + index) && *(str + index) != ' ')
 	{
 		length++;
+		index++;
 	}
 
 	return (length);
 }
-/**
- * _strdup - duplicates string
- * @str: string to duplicate
- * Return: Null
- */
-
-char *_strdup(char *str)
-{
-	int len, a;
-	char *duplication;
-
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-
-	len = _strlen(str);
-	duplication = malloc((len + 1) * sizeof(char));
-
-	if (duplication == NULL)
-	{
-		return (NULL);
-	}
-	for (a = 0; a < len; a++)
-	{
-		duplication[a] = str[a];
-	}
-	duplication[len] = '\0';
-
-	return (duplication);
-}
-
 /**
  * word_counter - count amount of words
  * @str: string to count
@@ -59,23 +28,22 @@ char *_strdup(char *str)
 
 int word_counter(char *str)
 {
-	int counter = 0, words = 0;
+	int counter = 0, words = 0, len = 0;
 
-	while (*str != '\0')
+	for (counter = 0; *(str + counter); counter++)
 	{
-		if (*str == ' ')
+		len++;
+	}
+	for (counter = 0; counter < len; counter++)
+	{
+		if (*(str + counter) != ' ')
 		{
-			words = 0;
+			words++;
+			counter = counter + _strlen(str + counter);
 		}
-		else if (words == 0)
-		{
-			words = 1;
-			counter++;
-		}
-		str++;
 	}
 
-		return (counter);
+		return (words);
 }
 
 /**
@@ -86,44 +54,44 @@ int word_counter(char *str)
 
 char **strtow(char *str)
 {
-	char **word, *t, *start, count_word;
-	int ind = 0, le, a;
+	char **word;
+	int ind = 0, a, b, let, wording;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || str[0] == '\0')
 	{
 		return (NULL);
 	}
-	count_word = word_counter(str);
-	word = malloc((count_word + 1) * sizeof(char *));
-	if (word == NULL)
+	wording = word_counter(str);
+	if (wording == 0)
 	{
 		return (NULL);
 	}
-	ind = 0, *t = str;
-	while (*t != '\0')
-	{
-		if (*t == ' ')
+	word = malloc(sizeof(char *) * (wording + 1));
+		if (word == NULL)
 		{
-			t++;
-			continue;
-		}
-		*start = t;
-		while (*t != ' ' && *t != '\0')
-		{
-			t++;
-		}
-		le = t - start, word[ind] = _strdup[start];
-		if (word[ind] == NULL)
-		{
-			for (a = 0; a < ind; a++)
-			{
-				free(word[a]);
-			}
-			free(word);
 			return (NULL);
 		}
-		ind++;
-	}
-	word[ind] = NULL;
-	return (word);
+		for (a = 0; a < wording; a++)
+		{
+			while (str[ind] == ' ')
+			{
+				ind++;
+			}
+			let = _strlen(str + ind);
+			word[a] = malloc(sizeof(char) * (let + 1));
+			if (word[a] == NULL)
+			{
+				for (; a >= 0; a--)
+					free(word[a]);
+				free(word);
+				return (NULL);
+			}
+			for (b = 0; b < let; b++)
+			{
+				word[a][b] = str[ind++];
+			}
+				word[a][b] = '\0';
+		}
+		word[a] = NULL;
+		return (word);
 }
