@@ -63,6 +63,8 @@ char *iterate_zero(char *str)
 {
 	while (*str != '\0' && *str == '0')
 	{
+		if (*(str + 1) == '\0')
+			break;
 		str++;
 	}
 	return (str);
@@ -118,16 +120,16 @@ void add_num(char *final_prod, char *next_prod, int next_length)
 {
 	int ten, num;
 
-	while (*(final_prod + 1))
+	while (*(final_prod + 1) != 'x')
 	{
 		final_prod++;
 	}
-	while (*(next_prod + 1))
+	while (*(next_prod + 1) != 'x')
 	{
 		next_prod++;
 	}
 	ten = 0;
-	while (*final_prod != 'x')
+	while (*final_prod != '\0')
 	{
 		num = (*final_prod - '0') + (*next_prod - '0') + ten;
 		*final_prod = (num % 10) + '0';
@@ -197,7 +199,7 @@ char *multiply(char *num1, char *num2)
 	}
 	if (index == resultLen)
 	{
-		return (0);
+		return (NULL);
 	}
 	result = malloc((resultLen - index + 1) * sizeof(char));
 	if (result == NULL)
