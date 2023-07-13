@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	{
 		for (digit = 0; argv[index][digit] != '\0'; digit++)
 		{
-			if (argc[index][digit] > 57 || argv[index][digit] < 48)
+			if (argv[index][digit] > 57 || argv[index][digit] < 48)
 			{
 				printf("Error\n");
 				exit (98);
