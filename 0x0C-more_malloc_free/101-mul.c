@@ -40,6 +40,7 @@ char *create_xarray(int size)
 	arr = malloc(sizeof(char) * size);
 	if (arr == NULL)
 	{
+		printf("Error\n");
 		exit(98);
 	}
 	for (a = 0; a < (size - 1); a++)
