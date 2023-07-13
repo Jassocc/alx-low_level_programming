@@ -74,14 +74,14 @@ char *iterate_zero(char *str)
 
 int multiply(int c)
 {
-        int digit = c - '0';
+	int digit = c - '0';
 
-        if (digit < 0 || digit > 9)
-        {
-                printf("Error\n");
-                exit(98);
-        }
-        return (digit);
+	if (digit < 0 || digit > 9)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+	return (digit);
 }
 
 /**
@@ -218,10 +218,10 @@ int main(int argc, char *argv[])
 	{
 		if (final_prod[index] != 'x')
 		{
-			_putchar(final_prod[index]);
+			putchar(final_prod[index]);
 		}
 	}
-	_putchar('\n');
+	putchar('\n');
 	free(next_prod);
 	free(final_prod);
 	return (0);
