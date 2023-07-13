@@ -66,6 +66,23 @@ char *iterate_zero(char *str)
 	}
 	return (str);
 }
+/**
+ * multiply - twostrings
+ * @c: string
+ * Return: product
+ */
+
+int multiply(int c)
+{
+        int digit = c - '0';
+
+        if (digit < 0 || digit > 9)
+        {
+                printf("Error\n");
+                exit(98);
+        }
+        return (digit);
+}
 
 /**
  * get_pr - multiplies string of numbers
@@ -153,24 +170,6 @@ void add_num(char *final_prod, char *next_prod, int next_length)
 	{
 		*final_prod = (ten % 10) + '0';
 	}
-}
-
-/**
- * multiply - twostrings
- * @c: string
- * Return: product
- */
-
-int multiply(int c)
-{
-	int digit = c - '0';
-
-	if (digit < 0 || digit > 9)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-	return (digit);
 }
 
 /**
