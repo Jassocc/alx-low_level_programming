@@ -1,12 +1,12 @@
 #include "main.h"
-#include <Stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 int find_length(char *str);
 char *create_xarray(int size);
 char *iterate_zero(char *str);
 void get_pr(char *prod, char *multi, int digit, int zero);
-void add_num(char * final_prod, char *next_prod, int next_length);
+void add_num(char *final_prod, char *next_prod, int next_length);
 
 /**
  * find_length - finds length of string
@@ -37,7 +37,7 @@ char *create_xarray(int size)
 	char *arr;
 	int a;
 
-	arr = malloc(sizeof(char) *(size + 1));
+	arr = malloc(sizeof(char) * (size + 1));
 	if (arr == NULL)
 	{
 		printf("Error\n");
@@ -77,9 +77,9 @@ char *iterate_zero(char *str)
 
 void get_pr(char *prod, char *multi, int digit, int zero)
 {
-	int multi_len, num, find_len, ten;
+	int multi_len, num, ten;
 
-	multi_len = find_len(multi) - 1;
+	multi_len = find_length(multi) - 1;
 	multi += multi_len;
 	while (*prod)
 	{
@@ -115,31 +115,30 @@ void get_pr(char *prod, char *multi, int digit, int zero)
 
 void add_num(char *final_prod, char *next_prod, int next_length)
 {
-	int ten, num1, num2;
+	int ten, num;
 
-	while(*(final_prod + 1))
+	while (*(final_prod + 1))
 	{
 		final_prod++;
 	}
-	while(*(next_prod + 1))
+	while (*(next_prod + 1))
 	{
 		next_prod++;
 	}
 	ten = 0;
 	while (*final_prod != 'x')
 	{
-		num1 = (*final_prod - '0') + (*next_prod - '0') + ten;
-		*final_prod = (num1 % 10) +'0';
+		num = (*final_prod - '0') + (*next_prod - '0') + ten;
+		*final_prod = (num % 10) + '0';
 		ten = num / 10;
 		final_prod--;
 		next_prod--;
-		next_length--;
 	}
-	while (next_length >= 0 && *next_prod !+ 'x')
+	while (next_length >= 0 && *next_prod != 'x')
 	{
-		num2 = (*next_prod - '0') + ten;
-		*final_prod = (num2 % 10) + '0';
-		ten = num2 / 10;
+		num = (*next_prod - '0') + ten;
+		*final_prod = (num % 10) + '0';
+		ten = num / 10;
 		final_prod--;
 		next_prod--;
 		next_length--;
@@ -157,10 +156,10 @@ void add_num(char *final_prod, char *next_prod, int next_length)
  * Return: 0
  */
 
-int main(int argc, int argv)
+int main(int argc, char *argv[])
 {
 	char *num3, *num4, *final_prod, *next_prod;
-	int index, digit, printer;
+	int index, digit, printer, size, zero;
 
 	if (argc != 3)
 	{
@@ -169,19 +168,43 @@ int main(int argc, int argv)
 	}
 	num3 = argv[1];
 	num4 = argv[2];
-	if (num3 == '0')
+	if (*num3 == '0')
 	{
-		num1 = iterate_zero(num3);
+		num3 = iterate_zero(num3);
 	}
-	if (num4 == '0')
+	if (*num4 == '0')
 	{
 		num4 = iterate_zero(num4);
 	}
 	if (*num3 == '\0' || *num4 == '\0')
 	{
 		printf("0\n");
-		retrun (0);
+		return (0);
 	}
 	size = find_length(num3) + find_length(num4);
 	final_prod = create_xarray(size);
 	next_prod = create_xarray(size);
+	for (index = find_length(num4) - 1, zero = 0; index >= 0; index--, zero++)
+	{
+		digit = num4[index] - '0';
+		get_pr(next_prod, num3, digit, zero);
+		add_num(final_prod, next_prod, size - 1);
+	}
+	printer = 0;
+	for (index = 0; final_prod[index] != '\0'; index++)
+	{
+		if (final_prod[index] != 'x')
+		{
+			_putchar(final_prod[index]);
+			printer = 1;
+		}
+		else if (printer)
+		{
+			_putchar('0');
+		}
+	}
+	_putchar('\n');
+	free(next_prod);
+	free(final_prod);
+	return (0);
+}
