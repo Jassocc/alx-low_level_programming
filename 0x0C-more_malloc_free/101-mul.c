@@ -7,7 +7,7 @@ char *create_xarray(int size);
 char *iterate_zero(char *str);
 void get_pr(char *prod, char *multi, int digit, int zero);
 void add_num(char *final_prod, char *next_prod, int next_length);
-char *multiply(char *num1, char *num2);
+int multiply(char c);
 
 /**
  * find_length - finds length of string
@@ -19,10 +19,9 @@ int find_length(char *str)
 {
 	int length = 0;
 
-	while (*str != '\0')
+	while (*str++)
 	{
 	length++;
-	str++;
 	}
 	return (length);
 }
@@ -38,17 +37,17 @@ char *create_xarray(int size)
 	char *arr;
 	int a;
 
-	arr = malloc(sizeof(char) * (size + 1));
+	arr = malloc(sizeof(char) * size);
 	if (arr == NULL)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	for (a = 0; a < size; a++)
+	for (a = 0; a < (size - 1); a++)
 	{
 		arr[a] = 'x';
 	}
-	arr[size] = '\0';
+	arr[a] = '\0';
 
 	return (arr);
 }
@@ -61,10 +60,8 @@ char *create_xarray(int size)
 
 char *iterate_zero(char *str)
 {
-	while (*str != '\0' && *str == '0')
+	while (*str && *str == '0')
 	{
-		if (*(str + 1) == '\0')
-			break;
 		str++;
 	}
 	return (str);
@@ -103,9 +100,13 @@ void get_pr(char *prod, char *multi, int digit, int zero)
 			exit(98);
 		}
 		num = (*multi - '0') * digit;
+		num += ten;
 		*prod = (num % 10) + '0';
 		ten = num / 10;
-		*(prod - 1) += ten;
+	}
+	if (ten)
+	{
+		*prod = (ten % 10) + '0';
 	}
 }
 
@@ -118,35 +119,35 @@ void get_pr(char *prod, char *multi, int digit, int zero)
 
 void add_num(char *final_prod, char *next_prod, int next_length)
 {
-	int ten, num;
+	int ten = 0, num;
 
-	while (*(final_prod + 1) != 'x')
+	while (*(final_prod + 1))
 	{
 		final_prod++;
 	}
-	while (*(next_prod + 1) != 'x')
+	while (*(next_prod + 1))
 	{
 		next_prod++;
 	}
-	ten = 0;
-	while (*final_prod != '\0')
+	for (; *final_prod != 'x'; *final_prod--)
 	{
-		num = (*final_prod - '0') + (*next_prod - '0') + ten;
+		num = (*final_prod - '0') + (*next_prod - '0');
+		num += ten;
 		*final_prod = (num % 10) + '0';
 		ten = num / 10;
-		if (final_prod == next_prod)
-			break;
-		final_prod--;
-		next_prod--;
-	}
-	while (next_length >= 0 && *next_prod != 'x')
-	{
-		num = (*next_prod - '0') + ten;
-		*final_prod = (num % 10) + '0';
-		ten = num / 10;
-		final_prod--;
+
 		next_prod--;
 		next_length--;
+	}
+	for (; next_length >= 0 && *next_prod != 'x'; next_length--)
+	{
+		num = (*next_prod - '0')
+		*final_prod = (num % 10) + '0';
+		ten = num / 10;
+		num += ten;
+
+		final_prod--;
+		next_prod--;
 	}
 	if (ten)
 	{
@@ -156,66 +157,20 @@ void add_num(char *final_prod, char *next_prod, int next_length)
 
 /**
  * multiply - twostrings
- * @num1: string 1
- * @num2: string 2
+ * @c: string
  * Return: product
  */
 
-char *multiply(char *num1, char *num2)
+int multiply(char c)
 {
-	int resultIndex, index, len1, len2, resultLen;
-	int *product, i, j, digit1, digit2, prod, sum;
-	char *result;
+	int digit = c - '0';
 
-	len1 = find_length(num1);
-	len2 = find_length(num2);
-	resultLen = len1 + len2;
-	product = malloc(resultLen * sizeof(int));
-	if (product == NULL)
+	if(digit < 0 || digit > '9')
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	for (i = 0; i < resultLen; i++)
-	{
-		product[i] = 0;
-	}
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			digit1 = num1[i] - '0';
-			digit2 = num2[j] - '0';
-			prod = digit1 * digit2;
-			sum = product[i + j + 1] + prod;
-			product[i + j] += sum / 10;
-			product[i + j + 1] = sum % 10;
-		}
-	}
-	index = 0;
-	while (index < resultLen && product[index] == 0)
-	{
-		index++;
-	}
-	if (index == resultLen)
-	{
-		return (NULL);
-	}
-	result = malloc((resultLen - index + 1) * sizeof(char));
-	if (result == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-	resultIndex = 0;
-	while (index < resultLen)
-	{
-		result[resultIndex++] = product[index] + '0';
-		index++;
-	}
-	result[resultIndex] = '\0';
-	free(product);
-	return (result);
+	return (digit);
 }
 
 /**
@@ -228,8 +183,8 @@ char *multiply(char *num1, char *num2)
 int main(int argc, char *argv[])
 {
 	char *num3, *num4, *final_prod, *next_prod;
-	int index, digit, printer;
-	int size, zero;
+	int index, digit;
+	int size, zero = 0;
 
 	if (argc != 3)
 	{
@@ -252,25 +207,19 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 	size = find_length(num3) + find_length(num4);
-	final_prod = create_xarray(size);
-	next_prod = create_xarray(size);
-	for (index = find_length(num4) - 1, zero = 0; index >= 0; index--, zero++)
+	final_prod = create_xarray(size + 1);
+	next_prod = create_xarray(size + 1);
+	for (index = find_length(num4) - 1; index >= 0; index--)
 	{
-		digit = num4[index] - '0';
-		get_pr(next_prod, num3, digit, zero);
+		digit = multiply(num4 + index);
+		get_pr(next_prod, num3, digit, zero++);
 		add_num(final_prod, next_prod, size - 1);
 	}
-	printer = 0;
-	for (index = 0; final_prod[index] != '\0'; index++)
+	for (index = 0; final_prod[index]; index++)
 	{
 		if (final_prod[index] != 'x')
 		{
 			_putchar(final_prod[index]);
-			printer = 1;
-		}
-		else if (printer)
-		{
-			_putchar('0');
 		}
 	}
 	_putchar('\n');
