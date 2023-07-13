@@ -159,7 +159,8 @@ void add_num(char *final_prod, char *next_prod, int next_length)
 int main(int argc, char *argv[])
 {
 	char *num3, *num4, *final_prod, *next_prod;
-	int index, digit, printer, size, zero;
+	int index, digit, printer;
+	int size, zero;
 
 	if (argc != 3)
 	{
