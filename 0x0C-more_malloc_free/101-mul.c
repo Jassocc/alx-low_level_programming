@@ -164,7 +164,7 @@ int multiply(int c)
 {
 	int digit = c - '0';
 
-	if(digit < 0 || digit > 9)
+	if (digit < 0 || digit > 9)
 	{
 		printf("Error\n");
 		exit(98);
