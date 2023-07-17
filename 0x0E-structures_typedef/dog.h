@@ -5,6 +5,7 @@
  * dog_t - new structure for dog
  */
 typedef dog dog_t;
+
 /**
  * struct dog - structure
  * @name:first member
