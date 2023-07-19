@@ -5,13 +5,14 @@
  * main - print own opcodes
  * @argc: counter
  * @argv: arguments
- * Return: 0 
+ * Return: 0
  */
 
 int main(int argc, char *argv[])
 {
 	int data, a = 0;
-	char *array
+
+	char *array;
 
 		if (argc != 2)
 		{
