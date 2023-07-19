@@ -8,7 +8,7 @@
  * @argv: argument
  * Return: 0
  */
-
+1
 int main(int argc, char *argv[])
 {
 	int number1, number2;
