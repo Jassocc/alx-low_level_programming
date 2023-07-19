@@ -14,23 +14,23 @@ int main(int argc, char *argv[])
 	int number1, number2;
 	int (*f)(int, int);
 
-	if (argv != 4)
+	if (argc != 4)
 	{
 		printf("Error\n");
-		exit (98);
+		exit(98);
 	}
 	number1 = atoi(argv[1]);
 	number2 = atoi(argv[3]);
 	f = get_op_func(argv[2]);
-	if (f == NULL || (f[1] != '\0'))
+	if (f == NULL || (argv[2][1] != '\0'))
 	{
 		printf("Error\n");
-		exit (99);
+		exit(99);
 	}
-	if ((f[0] == '/' || f[0] == '%') && number2[0] == '0')
+	if ((argv[2][0] == '/' || argv[2][0] == '%') && argv[3][0] == '0')
 	{
 		printf("Error\n");
-		exit (100);
+		exit(100);
 	}
 	printf("%d\n", f(number1, number2));
 
