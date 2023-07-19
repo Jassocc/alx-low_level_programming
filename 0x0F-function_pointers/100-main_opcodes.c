@@ -28,11 +28,6 @@ int main(int argc, char *argv[])
 
 	for (; a < data; a++)
 	{
-		if (a == data - 1)
-		{
-			printf("%02hhx\n", array[a]);
-			break;
-		}
 		printf("%02hhx", array[a]);
 	}
 	return (0);
