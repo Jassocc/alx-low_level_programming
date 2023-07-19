@@ -1,6 +1,8 @@
-#ifndef FUCNTION_POINTERS
-#define FUNCTION_POINTERS
+#ifndef FUCNTION_POINTERS_H
+#define FUNCTION_POINTERS_H
+
 #include <stddef.h>
+#include <Stdlib.h>
 
 void print_name(char *name, void (*f)(char *));
 
