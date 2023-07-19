@@ -27,6 +27,15 @@ int main(int argc, char *argv[])
 	for (; a < data; a++)
 	{
 		printf("%02hhx", *((char *)main + a));
+
+		if (a < data - 1)
+		{
+			printf(" ");
+		}
+		else
+		{
+			printf("\n");
+		}
 	}
 	return (0);
 }
