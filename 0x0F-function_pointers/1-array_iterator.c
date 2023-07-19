@@ -5,7 +5,7 @@
 /**
  * array_iterator -  executes a function on each element of an array
  * @size: size of array
- * @action - a pointer to the function
+ * @action: a pointer to the function
  * @array: array
  */
 
@@ -14,7 +14,7 @@ void array_iterator(int *array, size_t size, void (*action)(int))
 
 	size_t a;
 
-	if (array == NULL || action ==NULL)
+	if (array == NULL || action == NULL)
 	{
 		return;
 	}
