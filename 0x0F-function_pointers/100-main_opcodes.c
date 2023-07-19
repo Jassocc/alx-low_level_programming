@@ -11,7 +11,6 @@
 int main(int argc, char *argv[])
 {
 	int data, a = 0;
-	unsigned char *array;
 
 		if (argc != 2)
 		{
@@ -24,11 +23,10 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(2);
 	}
-	array = (unsigned char *)main;
 
 	for (; a < data; a++)
 	{
-		printf("%02hhx", array[a]);
+		printf("%02hhx", *((char *)main + a));
 	}
 	return (0);
 }
