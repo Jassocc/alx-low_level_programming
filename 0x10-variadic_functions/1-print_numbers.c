@@ -16,7 +16,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	if (n >= 1)
 	{
 		va_start(vnum, n);
-		for (; a < n; a++)
+		for (; a <= n; a++)
 		{
 			printf("%d", va_arg(vnum, int));
 
