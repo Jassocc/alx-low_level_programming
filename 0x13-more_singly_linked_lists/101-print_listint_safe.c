@@ -19,7 +19,7 @@ int node_count(const listint_t *head)
 		c++;
 		if (slow == fast)
 		{
-			slow = fast;
+			slow = head;
 			while (slow != fast)
 			{
 				slow = slow->next;
@@ -65,7 +65,6 @@ size_t print_listint_safe(const listint_t *head)
 
 	node = 0;
 	c = 0;
-	f = 0;
 	if (head == NULL)
 	{
 		exit(98);
@@ -74,7 +73,8 @@ size_t print_listint_safe(const listint_t *head)
 	if (f == 1)
 	{
 		c = node_count(head);
-		for (; f < c; f++)
+		temp = head;
+		for (f = 0; f < c; f++)
 		{
 			printf("[%p] %d\n", (void *)temp, temp->n);
 			node = node + 1;
