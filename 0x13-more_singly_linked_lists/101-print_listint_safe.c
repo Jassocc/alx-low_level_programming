@@ -1,4 +1,4 @@
-#include "main.h"
+#include "lists.h"
 
 /**
  * node_count - counts nodes
