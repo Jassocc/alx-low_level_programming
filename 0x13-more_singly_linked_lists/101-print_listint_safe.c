@@ -13,7 +13,7 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (temp)
 	{
-		printf("[%p] %d\n", (void *)temp, temp ->n);
+		printf("[%p] %d\n", (void *)temp, temp->n);
 		node++;
 		if (temp == loop_node)
 		{
