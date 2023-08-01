@@ -26,7 +26,7 @@ size_t loop_count(listint_t *head)
 				slow = slow->next;
 				fast = fast->next;
 			}
-			slow = slow ->next;
+			slow = slow->next;
 			while (slow != fast)
 			{
 				n++;
@@ -37,7 +37,7 @@ size_t loop_count(listint_t *head)
 		slow = slow->next;
 		fast = (fast->next)->next;
 	}
-	return(0);
+	return (0);
 }
 /**
  * free_listint_safe - frees a listint_t list.
