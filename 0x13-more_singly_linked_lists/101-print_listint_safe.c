@@ -1,35 +1,75 @@
 #include "lists.h"
 
 /**
+ * node_count - counts nodes
+ * @head: pointer
+ * Return: count
+ */
+int node_count(const listint_t *head)
+{
+	const listint_t *slow, *fast;
+	size_t n = 1;
+
+	if (head == NULL || head->next == NULL)
+	{
+		return (0);
+	}
+	slow = head->next;
+	fast = (head->next)->next;
+	while (fast)
+	{
+		if (slow == fast)
+		{
+			slow = fast;
+			while (slow != fast)
+			{
+				n++;
+				slow = slow->next;
+				fast = fast->next;
+			}
+			slow = slow->next;
+			while (slow != fast)
+			{
+				n++;
+				slow = slow->next;
+			}
+			return (n);
+		}
+		slow = slow->next;
+		fast = (fast->next)->next;
+	}
+	return (0);
+}
+/**
  * print_listint_safe - prints a listint_t linked list.
  * @head: list
  * Return: number of nodes
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t node = 0;
-	const listint_t *temp = head;
-	const listint_t *loop_node = NULL;
+	size_t node, idx;
 
-	while (temp)
+	idx = 0;
+	if (head == NULL)
+	exit (98);
+
+	node = node_count(head);
+	if (node == 0)
 	{
-		printf("[%p] %d\n", (void *)temp, temp->n);
-		node++;
-		if (temp->next == loop_node)
+		for(; head != NULL; node++)
 		{
-			printf("-> [%p] %d\n", (void *)temp->next, temp->next->n);
-			break;
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
 		}
-		temp = temp->next;
-		if (node % 2 == 0)
+	}
+	else
+	{
+		for(idx = 0; idx < node; idx++)
 		{
-			if (loop_node == NULL)
-			{
-				loop_node = head;
-			}
-			else
-				loop_node = loop_node->next;
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
 		}
+		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
 	return (node);
 }
