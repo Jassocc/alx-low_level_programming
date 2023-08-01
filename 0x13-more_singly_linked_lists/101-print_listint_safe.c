@@ -1,75 +1,59 @@
 #include "lists.h"
 
 /**
- * node_count - counts nodes
- * @head: pointer
- * Return: count
+ * _location - count
+ * @listing: pointer
+ * @size: size of array
+ * @newer: list
+ * Return: list
  */
-int node_count(const listint_t *head)
+const listint_t **_location(const listint_t **listing, size_t size, const listint_t *newer)
 {
-	const listint_t *slow, *fast;
-	size_t n = 1;
+	const listint_t **n;
+	size_t a = 0;
 
-	if (head == NULL || head->next == NULL)
+	n = malloc(sizeof(listint_t *) * size);
+	if (n == NULL)
 	{
-		return (0);
+		free(listing);
+		exit(98);
 	}
-	slow = head->next;
-	fast = (head->next)->next;
-	while (fast)
+	for (; a < size - 1; a++)
 	{
-		if (slow == fast)
-		{
-			slow = fast;
-			while (slow != fast)
-			{
-				n++;
-				slow = slow->next;
-				fast = fast->next;
-			}
-			slow = slow->next;
-			while (slow != fast)
-			{
-				n++;
-				slow = slow->next;
-			}
-			return (n);
-		}
-		slow = slow->next;
-		fast = (fast->next)->next;
+		n[a] = listing[a];
+		n[a] = newer;
+		free(listing);
+		return (n);
 	}
-	return (0);
 }
 /**
- * print_listint_safe - prints a listint_t linked list.
- * @head: list
- * Return: number of nodes
+ * print_listint_safe - prints a list
+ * @head: linked list
+ * Return: list
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t node, idx;
+	size_t b, counter;
+	const listint_t **loop = NULL;
 
-	idx = 0;
-	if (head == NULL)
-	exit(98);
-
-	node = node_count(head);
-	if (node == 0)
+	b = 0;
+	counter = 0;
+	while (head != NULL)
 	{
-		for (; head != NULL; node++)
+		for (; b < counter; b++)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			if (head == loop[b])
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free(loop);
+				return (counter);
+			}
 		}
+		counter++;
+		loop = _location(loop, counter, head);
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
 	}
-	else
-	{
-		for (idx = 0; idx < node; idx++)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-		}
-		printf("-> [%p] %d\n", (void *)head, head->n);
-	}
-	return (node);
+	free(loop);
+	return (counter);
 }
