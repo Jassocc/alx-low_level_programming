@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * _loc - count
+ * loc - count
  * @lis: pointer
  * @size: size of array
  * @ne: list
