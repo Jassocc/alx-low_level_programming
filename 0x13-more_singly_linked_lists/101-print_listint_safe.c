@@ -1,13 +1,13 @@
 #include "lists.h"
 
 /**
- * _location - count
- * @listing: pointer
+ * _loc - count
+ * @lis: pointer
  * @size: size of array
- * @newer: list
+ * @ne: list
  * Return: list
  */
-const listint_t **_location(const listint_t **listing, size_t size, const listint_t *newer)
+const listint_t **_loc(const listint_t **lis, size_t size, const listint_t *ne)
 {
 	const listint_t **n;
 	size_t a = 0;
@@ -15,16 +15,16 @@ const listint_t **_location(const listint_t **listing, size_t size, const listin
 	n = malloc(sizeof(listint_t *) * size);
 	if (n == NULL)
 	{
-		free(listing);
+		free(lis);
 		exit(98);
 	}
 	for (; a < size - 1; a++)
 	{
-		n[a] = listing[a];
-		n[a] = newer;
-		free(listing);
-		return (n);
+		n[a] = lis[a];
 	}
+	n[a] = ne;
+	free(lis);
+	return (n);
 }
 /**
  * print_listint_safe - prints a list
@@ -50,7 +50,7 @@ size_t print_listint_safe(const listint_t *head)
 			}
 		}
 		counter++;
-		loop = _location(loop, counter, head);
+		loop = _loc(loop, counter, head);
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
 	}
