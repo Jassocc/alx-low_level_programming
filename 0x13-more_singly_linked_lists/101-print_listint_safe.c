@@ -36,11 +36,10 @@ size_t print_listint_safe(const listint_t *head)
 	size_t b, counter;
 	const listint_t **loop = NULL;
 
-	b = 0;
 	counter = 0;
 	while (head != NULL)
 	{
-		for (; b < counter; b++)
+		for (b = 0; b < counter; b++)
 		{
 			if (head == loop[b])
 			{
