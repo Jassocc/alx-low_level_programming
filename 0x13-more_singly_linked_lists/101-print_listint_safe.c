@@ -5,6 +5,7 @@
  * @head: pointer
  * Return: count
  */
+/*
 int node_count(const listint_t *head)
 {
 	const listint_t *slow, *fast;
@@ -39,7 +40,7 @@ int node_count(const listint_t *head)
 		fast = (fast->next)->next;
 	}
 	return (0);
-}
+}*/
 /**
  * print_listint_safe - prints a listint_t linked list.
  * @head: list
@@ -47,29 +48,53 @@ int node_count(const listint_t *head)
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t node, idx;
+	const listint_t *start = head;
+	const listint_t *slow = head;
+	const listint_t *fast = head;
+	size_t node = 0;
+	int f = 0;
 
-	idx = 0;
-	if (head == NULL)
-	exit(98);
-
-	node = node_count(head);
-	if (node == 0)
+	while (slow && fast && fast->next)
 	{
-		for (; head != NULL; node++)
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		node++;
+		slow = slow->next;
+		fast = fast->next->next;
+		if (slow == fast)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			f = 1;
+			break;
 		}
+	}
+	if (f)
+	{
+		while (start != slow)
+		{
+			printf("[%p] %d\n", (void *)start, start->n);
+			node++;
+			start = start->next;
+			slow = slow->next;
+		}
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		node++;
+		slow = slow->next;
+	while (slow != start)
+	{
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		node++;
+		slow = slow->next;
+	}
+	printf("-> [%p] %d\n", (void *)slow, slow->n);
 	}
 	else
 	{
-		for (idx = 0; idx < node; idx++)
+		slow = head;
+		while (slow)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			printf("[%p] %d\n", (void *)slow, slow->n);
+			node++;
+			slow = slow->next;
 		}
-		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
 	return (node);
 }
