@@ -7,7 +7,7 @@
  * @ne: list
  * Return: list
  */
-const listint_t **_loc(const listint_t **lis, size_t size, const listint_t *ne)
+const listint_t **loc(const listint_t **lis, size_t size, const listint_t *ne)
 {
 	const listint_t **n;
 	size_t a = 0;
@@ -49,7 +49,7 @@ size_t print_listint_safe(const listint_t *head)
 			}
 		}
 		counter++;
-		loop = _loc(loop, counter, head);
+		loop = loc(loop, counter, head);
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
 	}

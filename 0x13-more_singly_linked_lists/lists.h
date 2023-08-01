@@ -37,6 +37,6 @@ listint_t *find_listint_loop(listint_t *head);
 int list_loop(const listint_t *head);
 int node_count(const listint_t *head);
 size_t loop_count(listint_t *head);
-const listint_t **_loc(const listint_t **lis, size_t size, const listint_t *ne);
+const listint_t **loc(const listint_t **lis, size_t size, const listint_t *ne);
 
 #endif
