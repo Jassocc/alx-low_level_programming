@@ -9,6 +9,10 @@
 void display_error(const char *msg);
 void display_elf(const char *filneame);
 int main(int argc, char *argv[]);
+void print_magic(unsigned char *ident);
+void print_class(unsigned char class);
+void print_data(unsigned char data);
+void print_os(unsigned char osabi);
 
 /**
  * display_error - display error msg
