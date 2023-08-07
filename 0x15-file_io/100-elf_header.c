@@ -9,6 +9,10 @@
 void display_error(const char *msg);
 void display_elf(const char *filneame);
 int main(int argc, char *argv[]);
+void print_magic(unsigned char *ident);
+void print_class(unsigned char class);
+void print_data(unsigned char data);
+void print_os(unsigned char osabi);
 
 /**
  * display_error - display error msg
@@ -132,42 +136,76 @@ void display_elf(const char *filename)
 {
 	int fd = open(filename, O_RDONLY);
 	char *file_t[] = {"None", "REL", "EXEC", "DYN", "CORE"};
-	Elf32_Ehdr header;
+	Elf64_Ehdr header64;
+	ssize_t n;
+	Elf32_Ehdr header32;
 
 	if (fd == -1)
 	{
 	display_error("Error: Cannot open file");
 	}
-	if (read(fd, &header, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
+	n = read(fd, &header64, sizeof(header64));
+	if (n == sizeof(header64))
 	{
-		display_error("Error: Cannot read ELF header");
-	}
-	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
-		header.e_ident[EI_MAG1] != ELFMAG1 ||
-		header.e_ident[EI_MAG2] != ELFMAG2 ||
-		header.e_ident[EI_MAG3] != ELFMAG3)
+	if (header64.e_ident[EI_MAG0] != ELFMAG0 ||
+		header64.e_ident[EI_MAG1] != ELFMAG1 ||
+		header64.e_ident[EI_MAG2] != ELFMAG2 ||
+		header64.e_ident[EI_MAG3] != ELFMAG3)
 	{
-		display_error("Error: Not an ELF file");
-	}
-	print_magic(header.e_ident);
-	print_class(header.e_ident[EI_CLASS]);
-	print_data(header.e_ident[EI_DATA]);
+	print_magic(header64.e_ident);
+	print_class(header64.e_ident[EI_CLASS]);
+	print_data(header64.e_ident[EI_DATA]);
 	printf("Version:                            %d\n",
-			header.e_ident[EI_VERSION]);
-	print_os(header.e_ident[EI_OSABI]);
+			header64.e_ident[EI_VERSION]);
+	print_os(header64.e_ident[EI_OSABI]);
 	printf("ABI Version:                        %d\n",
-			header.e_ident[EI_ABIVERSION]);
+			header64.e_ident[EI_ABIVERSION]);
 	printf("Type:                               ");
-	if (header.e_type < sizeof(file_t) / sizeof(file_t[0]))
+	if (header64.e_type < sizeof(file_t) / sizeof(file_t[0]))
 	{
-		printf("%s\n", file_t[header.e_type]);
+		printf("%s\n", file_t[header64.e_type]);
 	}
 	else
 	{
 		printf("<unknown>\n");
 	}
-	printf("Entry point address:                %#x\n", header.e_entry);
+	printf("Entry point address:                %#lx\n", header64.e_entry);
 	close(fd);
+	return;
+	}
+	}
+	lseek(fd, 0, SEEK_SET);
+	n = read(fd, &header32, sizeof(header32));
+	if (n == sizeof(header32))
+	{
+	if (header32.e_ident[EI_MAG0] != ELFMAG0 ||
+		header32.e_ident[EI_MAG1] != ELFMAG1 ||
+		header32.e_ident[EI_MAG2] != ELFMAG2 ||
+		header32.e_ident[EI_MAG3] != ELFMAG3)
+	{
+	print_magic(header32.e_ident);
+	print_class(header32.e_ident[EI_CLASS]);
+	print_data(header32.e_ident[EI_DATA]);
+	printf("Version:                            %d\n",
+			header32.e_ident[EI_VERSION]);
+	print_os(header32.e_ident[EI_OSABI]);
+	printf("ABI Version:                        %d\n",
+			header32.e_ident[EI_ABIVERSION]);
+	printf("Type:                               ");
+	if (header32.e_type < sizeof(file_t) / sizeof(file_t[0]))
+	{
+		printf("%s\n", file_t[header32.e_type]);
+	}
+	else
+	{
+		printf("<unknown>\n");
+	}
+	printf("Entry point address:                %#x\n", header32.e_entry);
+	close(fd);
+	return;
+	}
+	}
+	display_error("Error: Not an ELF file");
 }
 /**
  * main - main function to print all
