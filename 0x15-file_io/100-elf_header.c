@@ -20,6 +20,20 @@ void display_error(const char *msg)
 	exit(98);
 }
 /**
+ * check - checks elf files
+ * @ident: identify
+ */
+void check (unsigned char *ident)
+{
+	if (ident[EI_MAG0] != ELFMAG0 ||
+			ident[EI_MAG1] != ELFMAG1 ||
+			ident[EI_MAG2] != ELFMAG2 ||
+			ident[EI_MAG3] != ELFMAG3 )
+	{
+		display_error("Error: Not an ELF file");
+	}
+}
+/**
  * print_magic - prints the maghic
  * @ident: identity
  */
@@ -125,13 +139,30 @@ void print_os(unsigned char osabi)
 	}
 }
 /**
+ * print_t - prints type
+ * @e_type: type
+ */
+void print_t(unsigned int e_type)
+{
+	char *file_t[] = {"None", "REL", "EXEC", "DYN", "CORE"};
+
+	printf("Type:                               ");
+	if (e_type < sizeof(file_t) / sizeof(file_t[0]))
+	{
+		printf("%s\n", file_t[e_type]);
+	}
+	else
+	{
+		printf("<unknown>\n");
+	}
+}
+/**
  * display_elf - displays elf file
  * @filename: file to display
  */
 void display_elf(const char *filename)
 {
 	int fd = open(filename, O_RDONLY);
-	char *file_t[] = {"None", "REL", "EXEC", "DYN", "CORE"};
 	Elf32_Ehdr header;
 
 	if (fd == -1)
@@ -142,13 +173,7 @@ void display_elf(const char *filename)
 	{
 		display_error("Error: Cannot read ELF header");
 	}
-	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
-		header.e_ident[EI_MAG1] != ELFMAG1 ||
-		header.e_ident[EI_MAG2] != ELFMAG2 ||
-		header.e_ident[EI_MAG3] != ELFMAG3)
-	{
-		display_error("Error: Not an ELF file");
-	}
+	check(header.e_ident);
 	print_magic(header.e_ident);
 	print_class(header.e_ident[EI_CLASS]);
 	print_data(header.e_ident[EI_DATA]);
@@ -157,15 +182,7 @@ void display_elf(const char *filename)
 	print_os(header.e_ident[EI_OSABI]);
 	printf("ABI Version:                        %d\n",
 			header.e_ident[EI_ABIVERSION]);
-	printf("Type:                               ");
-	if (header.e_type < sizeof(file_t) / sizeof(file_t[0]))
-	{
-		printf("%s\n", file_t[header.e_type]);
-	}
-	else
-	{
-		printf("<unknown>\n");
-	}
+	print_t(header.e_type);
 	printf("Entry point address:                %#x\n", header.e_entry);
 	close(fd);
 }
