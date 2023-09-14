@@ -3,7 +3,7 @@
 #include <string.h>
 
 /**
- * main generates and prints passwords
+ * main - generates and prints passwords
  * @argc: argc
  * @argv: array of pointers
  * Return: 0
