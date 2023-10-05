@@ -1,5 +1,5 @@
 #ifndef _HASSH_TABLE
-#define HASSH_TABLE
+#define _HASSH_TABLE
 
 #include <stdio.h>
 #include <stdlib.h>
