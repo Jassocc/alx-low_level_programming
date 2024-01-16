@@ -26,30 +26,24 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		prev = current;
 		step = jump;
 		while (step > 0 && current->next)
-		{
-			current = current->next;
+		{ current = current->next;
 			step--;
 		}
 		if (step > 0)
-		{
-			break;
+		{ break;
 		}
 		printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
 	}
 	printf("Value found between indexes [%lu] and [%lu]\n",
 			prev->index, current->index);
 	while (prev && prev->index < current->index)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", prev->index, prev->n);
+	{ printf("Value checked at index [%lu] = [%d]\n", prev->index, prev->n);
 		if (prev->n == value)
-		{
-			return (prev);
+		{ return (prev);
 		}
 		prev = prev->next;
 	}
 	if (prev && prev->index == size - 1)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", prev->index, prev->n);
-	}
-	return (NULL);
+	{ printf("Value checked at index [%lu] = [%d]\n", prev->index, prev->n);
+	} return (NULL);
 }
