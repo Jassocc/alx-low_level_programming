@@ -2,7 +2,7 @@
 #include "search_algos.h"
 
 /**
- * binary_search - searches for a value in a sorted array
+ * binnary_search - searches for a value in a sorted array
  * @array: pointer to the first element
  * @low: starting point of index
  * @high: ending point of index
