@@ -42,17 +42,20 @@ int advanced_binary_recursive(int *array, size_t low, size_t high, int value)
 	mid = (low + high) / 2;
 	if (array[mid] == value)
 	{
-		if (mid > 0 && array[mid - 1] == value)
+		if (mid == 0 || array[mid - 1] != value)
 		{
-			return (advanced_binary_recursive(array, low, mid, value));
+			return (mid);
 		}
-		return (mid);
+		return (advanced_binary_recursive(array, low, mid, value));
 	}
-	if (array[mid] < value)
+	else if (array[mid] > value)
+	{
+		return (advanced_binary_recursive(array, low, mid - 1, value));
+	}
+	else
 	{
 		return (advanced_binary_recursive(array, mid + 1, high, value));
 	}
-	return (advanced_binary_recursive(array, low, mid - 1, value));
 }
 /**
  * advanced_binary - searches for a value in a sorted array
