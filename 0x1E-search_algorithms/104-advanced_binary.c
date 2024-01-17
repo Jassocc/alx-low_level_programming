@@ -11,10 +11,14 @@ void print_array(int *array, size_t start, size_t end)
 {
 	size_t a;
 
-	printf("Searching in array: %d", array[start]);
-	for (a = start + 1; a <= end; a++)
+	printf("Searching in array: ");
+	for (a = start; a <= end; a++)
 	{
-		printf(", %d", array[a]);
+		printf("%d", array[a]);
+		if (a < end)
+		{
+			printf(", ");
+		}
 	}
 	printf("\n");
 }
